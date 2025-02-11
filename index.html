@@ -520,5 +520,34 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const months = [
+          "january",
+          "february",
+          "march",
+          "april",
+          "may",
+          "june",
+          "july",
+          "august",
+          "september",
+          "october",
+          "november",
+          "december",
+        ];
+
+        months.forEach((month) => {
+          const incomeInput = document.getElementById(`income-${month}`);
+          const expensesInput = document.getElementById(`expenses-${month}`);
+
+          const income = Math.floor(Math.random() * 801) + 200; // 200-1000
+          const expenses = Math.floor(Math.random() * (income - 200)) + 200; // 200 to income
+
+          incomeInput.value = income;
+          expensesInput.value = expenses;
+        });
+      });
+    </script>
   </body>
 </html>
