@@ -114,4 +114,13 @@ document.addEventListener("DOMContentLoaded", function () {
       .getElementById(`expenses-${month}`)
       .addEventListener("input", updateChart);
   });
+
+  document.getElementById("download").addEventListener("click", function () {
+    var canvas = document.getElementById("myBarChart");
+    var image = canvas.toDataURL("image/png");
+    var link = document.createElement("a");
+    link.href = image;
+    link.download = "chart.png";
+    link.click();
+  });
 });
