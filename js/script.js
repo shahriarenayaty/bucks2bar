@@ -1,4 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // input with id "username" on chages
+  document.getElementById("username").addEventListener("input", function () {
+    // get the value of the input
+    const username = document.getElementById("username").value;
+    // regex to chack if the username has at least 1 capital letter, 1 special character and 1 number and is at least 8 characters long
+    const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+    // check if the username matches the regex
+    const isValid = regex.test(username);
+    if (isValid) {
+      // if the username is valid, set the border color to green
+      document.getElementById("username").style.borderColor = "green";
+    } else {
+      // if the username is not valid, set the border color to red
+      document.getElementById("username").style.borderColor = "red";
+    }
+  });
+
   const getMonthlyData = (month) => {
     const income = document.getElementById(`income-${month}`).value;
     const expenses = document.getElementById(`expenses-${month}`).value;
@@ -90,7 +107,11 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   months.forEach((month) => {
-    document.getElementById(`income-${month}`).addEventListener("input", updateChart);
-    document.getElementById(`expenses-${month}`).addEventListener("input", updateChart);
+    document
+      .getElementById(`income-${month}`)
+      .addEventListener("input", updateChart);
+    document
+      .getElementById(`expenses-${month}`)
+      .addEventListener("input", updateChart);
   });
 });
