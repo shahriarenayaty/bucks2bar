@@ -11,6 +11,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json({ limit: "10mb" }));
 
+// Serve static files from this directory
+app.use(express.static(__dirname));
+
 app.post("/send-email", (req, res) => {
   const { email, image } = req.body;
   console.log("Sending email to:", { email, image });
@@ -54,6 +57,31 @@ app.post("/send-email", (req, res) => {
   });
 });
 
+// New endpoint to return dummy data
+app.get("/dummy-data", (req, res) => {
+  const months = [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december",
+  ];
+  const dummyData = {};
+  months.forEach((month) => {
+    const income = Math.floor(Math.random() * 801) + 200; // random between 200-1000
+    const expenses = Math.floor(Math.random() * (income - 200)) + 200;
+    dummyData[month] = { income, expenses };
+  });
+  res.json(dummyData);
+});
+
 function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(String(email).toLowerCase());
@@ -61,4 +89,9 @@ function validateEmail(email) {
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  // Automatically open the browser to index.html using dynamic import
+  (async () => {
+    const open = await import("open");
+    open.default(`http://localhost:${PORT}`);
+  })();
 });

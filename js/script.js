@@ -1,4 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Fetch dummy data and update input fields
+  fetch("http://localhost:3000/dummy-data")
+    .then(response => response.json())
+    .then(data => {
+      Object.keys(data).forEach(month => {
+        const incomeInput = document.getElementById(`income-${month}`);
+        const expensesInput = document.getElementById(`expenses-${month}`);
+        if (incomeInput && expensesInput) {
+          incomeInput.value = data[month].income;
+          expensesInput.value = data[month].expenses;
+        }
+      });
+      // Optionally update the chart if already initialized
+      if (typeof updateChart === "function") updateChart();
+    })
+    .catch(err => console.error("Error fetching dummy data:", err));
+
   document
     .getElementById("username")
     .addEventListener("input", userInputCallback);
