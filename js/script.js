@@ -1,21 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // input with id "username" on changes
-  document.getElementById("username").addEventListener("input", function () {
-    // get the value of the input
+  document
+    .getElementById("username")
+    .addEventListener("input", userInputCallback);
+
+  /**
+   * Callback function to validate the user input for a username.
+   * 
+   * This function retrieves the value of the input field with the ID "username",
+   * checks if it matches the specified regex pattern (at least 1 capital letter,
+   * 1 special character, 1 number, and at least 8 characters long), and sets the
+   * border color of the input field to green if valid, or red if invalid.
+   */
+  function userInputCallback() {
     const username = document.getElementById("username").value;
-    // regex to check if the username has at least 1 capital letter, 1 special character and 1 number and is at least 8 characters long
     const regex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-    // check if the username matches the regex
     const isValid = regex.test(username);
     if (isValid) {
-      // if the username is valid, set the border color to green
       document.getElementById("username").style.borderColor = "green";
     } else {
-      // if the username is not valid, set the border color to red
       document.getElementById("username").style.borderColor = "red";
     }
-  });
+  }
 
+  document.getElementById("send-email").addEventListener("click", function () {
+    var canvas = document.getElementById("myBarChart");
+    var image = canvas.toDataURL("image/png");
+    sendEmail(image);
+  });
   const getMonthlyData = (month) => {
     const income = document.getElementById(`income-${month}`).value;
     const expenses = document.getElementById(`expenses-${month}`).value;
@@ -24,6 +35,29 @@ document.addEventListener("DOMContentLoaded", function () {
       expenses: parseFloat(expenses) || 0,
     };
   };
+  function sendEmail(image) {
+    const email = document.getElementById("email-address").value;
+    if (!email) return;
+
+    fetch("http://localhost:3000/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email, image: image }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Email sent successfully!");
+        } else {
+          alert("Failed to send email.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while sending the email.");
+      });
+  }
 
   const months = [
     "january",

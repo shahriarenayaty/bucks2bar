@@ -4,3 +4,26 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 .DS_Store
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+ENV.bak/
+venv.bak/
+
+# Git
+*.swp
+*.swo
+*.orig
+*.rej
+*.bak
+*.old
+*.log
+*.tmp
+*.temp
