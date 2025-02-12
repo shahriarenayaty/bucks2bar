@@ -1,6 +1,6 @@
 # Bucks2Bar
 
-This repository is an exercise project developed using GitHub Copilot. The project demonstrates how to build an application with minimal coding effort by leveraging AI assistance. It is part of the coursework for the Udemy course:
+This repository is an exercise project developed using GitHub Copilot. The project demonstrates how to build an application with minimal coding effort by leveraging AI assistance. It is part of the coursework for the Udemy course:  
 [GitHub Copilot](https://www.udemy.com/course/github-copilot).
 
 ## Overview
@@ -40,6 +40,37 @@ Bucks2Bar is a sample application that combines an Express server with a fronten
 - Use the Data tab to see randomly populated income and expenses for each month.
 - Switch to the Chart tab to view the bar chart visualization.
 - You can also send the current chart via email using the provided functionality.
+
+## Python Version
+
+I also created a Python version of the server with a single prompt, demonstrating how AI can rapidly generate alternative implementations.
+
+## Advanced Prompts That Helped
+
+Below are some of the prompts that were very interesting and helpful during the development:
+
+1. **"Is there a built in method or existing library in … that can …"**  
+   _Prompt to help find optimal libraries or methods._
+
+2. **"Highlight any vulnerabilities in the solution you provide as well as solution to those vulnerabilities"**  
+   _Prompt for security guidance._
+
+3. **"Scan my code to find any potential vulnerabilities or security concerns. Also provide solutions to any issues you find"**  
+   _Prompt for code scanning and security recommendations._
+
+4. **"I want to learn more about this codebase. Create a quiz for me with Multiple choice answers to help me learn more about this codebase."**  
+   _Prompt to generate an educational quiz related to the code._
+
+5. **"Generate me a list of 20 employees. Each employee must have an id, first name, and last name. Your output must be a valid JSON format."**  
+   _Prompt to generate structured sample data._
+
+   _Command line GitHub Copilot:_
+   - `gh copilot …`
+   - `ghce: gh copilot explain`
+   - `ghcs: gh copilot suggest`
+
+6. **"Identify any security issues and vulnerabilities in your code"**  
+   _Prompt focused on ensuring code security._
 
 ## Learning with GitHub Copilot
 
